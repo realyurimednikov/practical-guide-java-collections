@@ -53,7 +53,25 @@ class IntermediateOperationsTest {
         List<String> names = stream.map(emp -> emp.getName())
                 .collect(Collectors.toList());
         
-        Assertions.assertThat(names).hasSize(5);
+        Assertions.assertThat(names).contains(
+                "Mia Smith", "Ava Williams", "Isla Johnson",
+                "Isabella Brown", "Jessica Williams"
+        );
+    }
+    
+    @Test
+    void flatMapTest(){
+        List<Integer> points1 = List.of(1,2);
+        List<Integer> points2 = List.of(3,4);
+        List<Integer> points3 = List.of(5,6);
+        
+        List<List<Integer>> list = List.of(points1,points2,points3);
+        
+        List<Integer> results = list.stream()
+                .flatMap(v -> v.stream())
+                .collect(Collectors.toList());
+        
+        Assertions.assertThat(results).contains(1,2,3,4,5,6);
     }
     
     @Test
