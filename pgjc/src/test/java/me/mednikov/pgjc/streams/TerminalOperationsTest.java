@@ -96,6 +96,27 @@ class TerminalOperationsTest {
     }
     
     @Test
+    void anyMatchTest(){
+        List<Integer> numbers = List.of(10, 53, 23, 95, 30);
+        boolean result = numbers.stream().anyMatch(n -> n%2 == 0);
+        Assertions.assertThat(result).isTrue();
+    }
+    
+    @Test
+    void allMatchTest(){
+        List<Integer> numbers = List.of(10, 53, 23, 95, 30);
+        boolean result = numbers.stream().allMatch(n -> n%2 == 0);
+        Assertions.assertThat(result).isFalse();
+    }
+    
+    @Test
+    void noneMatchTest(){
+        List<Integer> numbers = List.of(-4, -54, -25, -8, -1);
+        boolean result = numbers.stream().noneMatch(n -> n>0);
+        Assertions.assertThat(result).isTrue();
+    }
+    
+    @Test
     void reduceTest(){
         List<Invoice> invoices = List.of(
           new Invoice(1, LocalDate.of(2021, Month.MARCH, 10), 
