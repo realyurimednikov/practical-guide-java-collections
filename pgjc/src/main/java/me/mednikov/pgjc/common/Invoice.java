@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public final class Invoice {
+public final class Invoice implements Comparable<Invoice> {
     
     private final Integer invoiceId;
     private final LocalDate issuedDate;
@@ -57,6 +57,11 @@ public final class Invoice {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public int compareTo(Invoice o) {
+        return this.getIssuedDate().compareTo(o.getIssuedDate());
     }
     
     

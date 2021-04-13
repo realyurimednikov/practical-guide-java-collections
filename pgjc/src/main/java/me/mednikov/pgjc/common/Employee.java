@@ -2,7 +2,7 @@ package me.mednikov.pgjc.common;
 
 import java.util.Objects;
 
-public final class Employee {
+public final class Employee implements Comparable<Employee> {
     
     private final Integer employeeId;
     private final String name;
@@ -49,6 +49,11 @@ public final class Employee {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public int compareTo(Employee o) {
+        return this.getName().compareTo(o.getName());
     }
     
     
