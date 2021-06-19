@@ -1,5 +1,6 @@
 package me.mednikov.pgjc.bag;
 
+import java.util.Iterator;
 import java.util.Optional;
 import me.mednikov.pgjc.common.Department;
 import me.mednikov.pgjc.common.Employee;
@@ -92,7 +93,7 @@ class EclipseBagTest {
         int countOfOne = numbers.occurrencesOf(1);
         Assertions.assertThat(countOfOne).isEqualTo(5);
     }
-    
+        
     @Test
     void addTest(){
         ImmutableBag<Integer> original = Bags.immutable.of(1,2,3);
@@ -107,5 +108,19 @@ class EclipseBagTest {
         ImmutableBag<Integer> removed = original.newWithout(5);
         Assertions.assertThat(original.size()).isEqualTo(5);
         Assertions.assertThat(removed.size()).isEqualTo(4);
+    }
+    
+    @Test
+    void iteratorTest(){
+        ImmutableBag<Integer> numbers = Bags.immutable.of(1,2,3,4,5);
+        Iterator<Integer> iterator = numbers.iterator();
+        
+        int sum = 0;
+        while (iterator.hasNext()){
+            int val = iterator.next();
+            sum += val;
+        }
+        
+        Assertions.assertThat(sum).isEqualTo(15);
     }
 }
